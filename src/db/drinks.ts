@@ -29,11 +29,11 @@ export class DrinksRepository {
     try {
       const result = await client.query(
         `
-        INSERT INTO drinks (name, description, ingredients)
-        VALUES ($1, $2, $3)
+        INSERT INTO drinks (name, description, ingredients, image)
+        VALUES ($1, $2, $3, $4)
         RETURNING *
       `,
-        [name, description, ingredients]
+        [name, description, ingredients, image]
       );
       return result.rows[0];
     } finally {
