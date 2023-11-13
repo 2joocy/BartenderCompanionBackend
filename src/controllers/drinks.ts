@@ -32,7 +32,7 @@ export function DrinksController({ drinksRepository }: DrinksControllerProps) {
   router.get("/", async (req, res) => {
     const drinks = await drinksRepository.findAll();
 
-    res.status(200).json({ drinks });
+    res.status(200).json(drinks);
   });
 
   return router;
