@@ -46,7 +46,6 @@ export function UsersController({ usersRepository }: UserControllerProps) {
     }
 
     const isValidPassword = bcrypt.compareSync(password, user.password);
-
     if (!isValidPassword) {
       res.status(401).json({ message: "Invalid password" });
       return;
@@ -54,7 +53,9 @@ export function UsersController({ usersRepository }: UserControllerProps) {
 
     const token = sign(user);
 
-    res.status(200).json({ token });
+    delete user.password;
+
+    res.status(200).json({ token, user });
   });
 
   router.post("/admin", auth, isAdmin, async (req, res) => {
