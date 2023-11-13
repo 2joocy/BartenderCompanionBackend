@@ -45,7 +45,7 @@ export function UsersController({ usersRepository }: UserControllerProps) {
       return;
     }
 
-    const isValidPassword = bcrypt.compareSync(password, user.password);
+    const isValidPassword = bcrypt.compareSync(password, user.password!);
     if (!isValidPassword) {
       res.status(401).json({ message: "Invalid password" });
       return;
